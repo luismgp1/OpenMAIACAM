@@ -34,7 +34,7 @@ public class openCamara {
 
 
         camaraController camara = new camaraController();
-        camara.camaraOpen(path,"0");
+        camara.camaraOpen(path,"1");
 
         dobles d= new dobles();
         d.ejecutar(path);

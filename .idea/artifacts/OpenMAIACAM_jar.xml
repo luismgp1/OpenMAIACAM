@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OpenMAIACAM:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OpenMAIACAM_jar</output-path>
+    <root id="archive" name="OpenMAIACAM.jar">
+      <element id="module-output" name="OpenMAIACAM" />
+    </root>
+  </artifact>
+</component>
