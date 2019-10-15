@@ -61,14 +61,6 @@ public class files {
     }
 
 
-
-
-
-
-
-
-
-
     public void deleteFinish(String path,String fileName){
         try {
             path=path+fileName;
@@ -139,8 +131,6 @@ public class files {
     }
 
 
-
-
     public void deleteDirectory(String path){
 
         File directory = new File(path);
@@ -207,21 +197,6 @@ public class files {
 
 
 
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

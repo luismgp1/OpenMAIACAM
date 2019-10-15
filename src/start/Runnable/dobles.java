@@ -10,7 +10,6 @@ public class dobles {
     Thread t1;
     Runnable r1;
 
-
     public void ejecutar(String path) throws InterruptedException {
         t=new Thread(r);
         r = new comprobarfichero(1,path);
@@ -22,7 +21,6 @@ public class dobles {
         Thread.sleep(2000);
         t1.start();
     }
-
 
 
     class comprobarfichero2 implements Runnable{
@@ -85,8 +83,6 @@ public class dobles {
     }
 
 
-
-
     class comprobarfichero implements Runnable{
 
         public comprobarfichero(int uncontrolO, String unpath) {
@@ -116,10 +112,6 @@ public class dobles {
                 }
             }while(controlO==1);
         }
-
-
-
-
 
     }
 
