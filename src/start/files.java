@@ -6,6 +6,32 @@ import java.nio.file.*;
 
 public class files {
 
+
+    public String writeDatos(String path){
+
+        BufferedReader br = null;
+        String linea="0";
+        try {
+
+            br = new BufferedReader(new FileReader(path+"/datos.txt"));
+            while ((linea = br.readLine()) != null) {
+                System.out.println("Contenido fichero datos= "+linea); // CONTENIDO DEL FICHERO DATOS<<<<<<<<<<<<<<<
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null)
+                    br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        System.out.println(linea);
+        return null;
+    }
+
+
     public int checkData1(String path){
         String control1 = "0";
         String control2 ="-1";
@@ -61,18 +87,6 @@ public class files {
     }
 
 
-    public void deleteFinish(String path,String fileName){
-        try {
-            path=path+fileName;
-            Thread.sleep(700);
-            File camara = new File(path);
-            System.out.println(path);
-            camara.delete();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void CreateFile(String path, String fileName, String contenido) {
         try {
@@ -106,7 +120,7 @@ public class files {
     }
 
 
-    public void movePhotos(String path,String fileName) throws IOException {
+    public int movePhotos(String path,String fileName) throws IOException {
         int dato =0;
         fileName=fileName+"(";
         String cadena;
@@ -127,7 +141,11 @@ public class files {
                     StandardCopyOption.COPY_ATTRIBUTES
             };
             Files.copy(FROM, TO, options);
+            dato=i;
+
         }
+        System.out.println("CANTIDAD de fotos ="+dato);
+        return dato;
     }
 
 
@@ -198,5 +216,46 @@ public class files {
 
 
     }
+
+    public void cerrarMaia(){
+        Runtime aplicacion = Runtime.getRuntime();
+        try{aplicacion.exec("taskkill /F /IM MAIA_CAM.exe"); }
+        catch(Exception e){System.out.println(e); }
+
+    }
+
+    public int checkTask(){
+
+        try{
+            String maia="MAIA_CAM";
+            String str_proceso = null;
+            String admin =
+                    System.getenv("windir") + "\\system32\\" + "tasklist.exe";
+            Process proceso = Runtime.getRuntime().exec(admin);
+            BufferedReader input = new BufferedReader(
+                    new InputStreamReader(proceso.getInputStream()));
+            int i=0;
+            while((str_proceso = input.readLine()) != null){
+             //   System.out.println(str_proceso);
+
+                if(i>4){
+                    String palabratask = str_proceso.substring(0,8);
+                    if (maia.equals(palabratask)){
+                      //  System.out.println(str_proceso);
+                        System.out.println("iguales");
+                        return 1;
+                    }
+                }
+                i++;
+            }
+            input.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("diferentes");
+
+        return 0;
+    }
+
 
 }

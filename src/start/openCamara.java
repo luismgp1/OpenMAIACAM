@@ -31,10 +31,10 @@ public class openCamara {
                 createAndShowGUI();
             }
         }); */
-
+        String entrada="1";
 
         camaraController camara = new camaraController();
-        camara.camaraOpen(path,"1");
+        camara.camaraOpen(path,entrada);
 
         dobles d= new dobles();
         d.ejecutar(path);

@@ -39,32 +39,37 @@ public class dobles {
 
                 System.out.println("CONTRO XXXXX");
                 int a=0;
+                int task=0;
                 files file = new files();
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                task=file.checkTask();
+
+                System.out.println("task= "+task);
+
 
                 controlX=file.checkData2(path);
                 if (controlX!=1){
                     a=file.checkData1(path);
+                    //SALIDA ESPERA
                     if (a==0){
-                        try {
-                            file.moveFiles(path,"datos.txt");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                      //  try { file.CreateFile(path,"/datos.txt","0\nFail");file.moveFiles(path,"datos.txt");} catch (IOException e) { e.printStackTrace(); }
+
                         file.deleteDirectory(path);
                         t.stop();
-                        System.exit(0);
+                        System.exit(1);
                         break;
 
                     }
-                    else {
+                    if(a!=0) {
                         try {
+                            //SALIDA CON FOTOS
                             file.movePhotos(path,"sample");
-                            file.moveFiles(path,"datos.txt");
+                         //   file.CreateFile(path,"/datos.txt",numero+"\nsuccess");
+                         //   file.moveFiles(path,"datos.txt");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -74,7 +79,18 @@ public class dobles {
                         System.exit(0);
                         break;
                     }
+
                 }
+
+                if(task==0) {
+                    // SALIDA BOTON X
+                    file.deleteDirectory(path);
+                    t.stop();
+                    System.exit(-1);
+                    break;
+                }
+
+
 
             }while(controlX==1);
 
@@ -109,6 +125,7 @@ public class dobles {
 
                 if (controlO!=1){
                     file.CreateFile(path,"/entrada.txt","3");
+                    file.cerrarMaia();
                 }
             }while(controlO==1);
         }
